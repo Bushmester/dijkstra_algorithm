@@ -9,16 +9,16 @@ from multiprocessing import Pool
 DIR_PATH = "/home/bushmester/study/study_programming/cpp/dijkstra-algorithm/dijkstra_algorithm/work_with_data/load_testing_data_naiv/"
 
 
-def create_itarable_with_combination(start: int, end: int, step: int, count: int) -> list:
+def create_itarable_with_combination(start: int, end: int, step: int, count: int) -> list:  
     for i in range(start, end, step):
         for j in range(1, count + 1):
             yield i, j
 
 
-def create_adjacency_matrix(size, number):
+def create_adjacency_matrix(size: int, number: int):
     with open(DIR_PATH + f"{size}_{number}.txt", "w") as file:
         count_of_nodes = size
-        random_number = randint(1, 2 ** 2 ** 5)
+        random_number = randint(1, 2 ** 10)
         adjacency_matrix = [
             [inf for _ in range(count_of_nodes)] for _ in range(count_of_nodes)
         ]
@@ -41,7 +41,7 @@ def create_adjacency_matrix(size, number):
 
 def generate_data(start: int, end: int, step: int, count: int):
     with Pool() as pool:
-        pool.starmap_async(
+        pool.starmap(
             create_adjacency_matrix,
             list(create_itarable_with_combination(
                 start, end, step, count
@@ -54,7 +54,7 @@ def main():
         mkdir(DIR_PATH)
     except:
         pass
-
+    
     start = time.time()
     generate_data(
         start=2,
