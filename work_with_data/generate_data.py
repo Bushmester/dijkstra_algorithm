@@ -1,15 +1,10 @@
-from random import randint
-from math import inf
-from os import mkdir
-import time
-
 from multiprocessing import Pool
+from random import randint
+
+DIR_PATH = "/home/bushmester/study/study_programming/cpp/dijkstra-algorithm/work_with_data/load_testing_data/"
 
 
-DIR_PATH = "/home/bushmester/study/study_programming/cpp/dijkstra-algorithm/dijkstra_algorithm/work_with_data/load_testing_data_naiv/"
-
-
-def create_itarable_with_combination(start: int, end: int, step: int, count: int) -> list:  
+def create_itarable_with_combination(start: int, end: int, step: int, count: int) -> list:
     for i in range(start, end, step):
         for j in range(1, count + 1):
             yield i, j
@@ -17,10 +12,11 @@ def create_itarable_with_combination(start: int, end: int, step: int, count: int
 
 def create_adjacency_matrix(size: int, number: int):
     with open(DIR_PATH + f"{size}_{number}.txt", "w") as file:
+        file.write(str(size) + "\n")
         count_of_nodes = size
         random_number = randint(1, 2 ** 10)
         adjacency_matrix = [
-            [inf for _ in range(count_of_nodes)] for _ in range(count_of_nodes)
+            [-1 for _ in range(count_of_nodes)] for _ in range(count_of_nodes)
         ]
 
         for _ in range(random_number):
@@ -36,7 +32,12 @@ def create_adjacency_matrix(size: int, number: int):
         for index in range(count_of_nodes):
             adjacency_matrix[index][index] = 0
 
-        file.write(str(adjacency_matrix))
+        for elements in range(size):
+            for element in range(len(adjacency_matrix[elements])):
+                separ = " "
+                if element == len(adjacency_matrix[elements]) - 1:
+                    separ = "\n"
+                file.write(str(adjacency_matrix[elements][element]) + separ)
 
 
 def generate_data(start: int, end: int, step: int, count: int):
@@ -47,23 +48,3 @@ def generate_data(start: int, end: int, step: int, count: int):
                 start, end, step, count
             ))
         )
-
-
-def main():
-    try:
-        mkdir(DIR_PATH)
-    except:
-        pass
-    
-    start = time.time()
-    generate_data(
-        start=2,
-        end=100,
-        step=1,
-        count=100
-    )
-    print(time.time() - start)
-
-
-if __name__ == "__main__":
-    main()
