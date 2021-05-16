@@ -125,5 +125,4 @@ venv.bak/
 dmypy.json
 
 # Test directory
-load_testing_data_naiv
-load_testing_data_set
+load_testing_data
