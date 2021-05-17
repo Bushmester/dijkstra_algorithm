@@ -14,9 +14,9 @@ def create_adjacency_matrix(size: int, number: int):
     with open(DIR_PATH + f"{size}_{number}.txt", "w") as file:
         file.write(str(size) + "\n")
         count_of_nodes = size
-        random_number = randint(1, 2 ** 10)
+        random_number = randint(1, 2 ** 5)
         adjacency_matrix = [
-            [-1 for _ in range(count_of_nodes)] for _ in range(count_of_nodes)
+            [0 for _ in range(count_of_nodes)] for _ in range(count_of_nodes)
         ]
 
         for _ in range(random_number):
@@ -38,6 +38,8 @@ def create_adjacency_matrix(size: int, number: int):
                 if element == len(adjacency_matrix[elements]) - 1:
                     separ = "\n"
                 file.write(str(adjacency_matrix[elements][element]) + separ)
+
+        file.write(str(randint(0, size - 1)))
 
 
 def generate_data(start: int, end: int, step: int, count: int):
