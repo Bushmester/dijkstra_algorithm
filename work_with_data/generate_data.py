@@ -1,7 +1,7 @@
 from multiprocessing import Pool
 from random import randint
 
-DIR_PATH = "/home/bushmester/study/study_programming/cpp/dijkstra-algorithm/work_with_data/load_testing_data/"
+from .. import config
 
 
 def create_itarable_with_combination(start: int, end: int, step: int, count: int) -> list:
@@ -11,7 +11,7 @@ def create_itarable_with_combination(start: int, end: int, step: int, count: int
 
 
 def create_adjacency_matrix(size: int, number: int):
-    with open(DIR_PATH + f"{size}_{number}.txt", "w") as file:
+    with open(config.TESTING_DATA + f"{size}_{number}.txt", "w") as file:
         file.write(str(size) + "\n")
         count_of_nodes = size
         random_number = randint(1, 2 ** 5)
