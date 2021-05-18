@@ -42,7 +42,7 @@ def create_adjacency_matrix(size: int, number: int):
         file.write(str(randint(0, size - 1)))
 
 
-def generate_data(start: int, end: int, step: int, count: int):
+def generate_data_func(start: int, end: int, step: int, count: int):
     with Pool() as pool:
         pool.starmap(
             create_adjacency_matrix,
@@ -50,5 +50,3 @@ def generate_data(start: int, end: int, step: int, count: int):
                 start, end, step, count
             ))
         )
-
-generate_data(2, 23, 11, 3)

@@ -19,18 +19,18 @@ class UseDijkstraAlgorithm():
     def dijkstra_algorithm(self, dijkstra_algorithm: DijkstraAlgorithmStrategy) -> None:
         self._dijkstra_algorithm = dijkstra_algorithm
 
-    def search_shortest_path(self, matrix: List[List], vertex: int) -> List:
+    def search_shortest_path(self, matrix: List[List], vertex: int) -> List[int]:
         return self._dijkstra_algorithm.search_shortest_path(matrix, vertex)
 
 
 class DijkstraAlgorithmStrategy(ABC):
     @abstractmethod
-    def search_shortest_path(self, matrix: List[List], vertex: int) -> List:
+    def search_shortest_path(self, matrix: List[List], vertex: int) -> List[int]:
         pass
 
 
 class NaiveDijkstraAlgorithmStrategy(DijkstraAlgorithmStrategy):
-    def search_shortest_path(self, matrix: List[List], vertex: int) -> List:
+    def search_shortest_path(self, matrix: List[List], vertex: int) -> List[int]:
         shortest_paths = [math.inf] * len(matrix)
         shortest_paths[vertex] = 0
         checked_vertex = {vertex}
@@ -53,9 +53,9 @@ class NaiveDijkstraAlgorithmStrategy(DijkstraAlgorithmStrategy):
         return shortest_paths
 
 
-class SetDijkstraAlgorithmStrategy(DijkstraAlgorithmStrategy):
-    def search_shortest_path(self, matrix: List[List], vertex: int) -> List:
-        return set_dijkstra()
+# class SetDijkstraAlgorithmStrategy(DijkstraAlgorithmStrategy):
+#     def search_shortest_path(self, matrix: List[List], vertex: int) -> List[int]:
+#         return set_dijkstra()
 
 
 """
@@ -81,16 +81,3 @@ class SetDijkstraAlgorithmStrategy(DijkstraAlgorithmStrategy):
               [3, 4, 0, 11],
               [0, 0, 11, 0]]
     """
-
-"""
-    Input:
-
-
-    nodes_count = int(input())
-    matrix = [list(map(int, input().split())) for i in range(nodes_count)]
-    start_node = int(input())
-    while start_node >= nodes_count:
-        start_node = int(input())
-    """
-
-# print(naive_dijkstra(matrix, 0))

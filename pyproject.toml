@@ -2,7 +2,12 @@
 name = "dijkstra-algorithm"
 version = "0.1.0"
 description = ""
-authors = ["Ilnar Gomelyanov <hibushland@gmail.com>"]
+authors = [
+    "Ilnar Gomelyanov <hibushland@gmail.com>",
+    "Danil Dmitriev <senses.dimit@gmail.com>",
+    "Azat Khamzin <new.mail2018@mail.ru>",
+    "Artyom Kholopov <temych.arkh@gmail.com>" 
+]
 
 [tool.poetry.dependencies]
 python = "^3.8"
@@ -17,3 +22,6 @@ pytest = "^5.2"
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+fucking-dijkstra = 'dijkstra_algorithm.main:main'

@@ -4,9 +4,10 @@ from time import time
 from statistics import mean, median
 
 from dijkstra_algorithm.config import TESTING_DATA, MEASUREMENTS
+from dijkstra_algorithm.dijkstra_strategy import DijkstraAlgorithmStrategy
 
 
-def measute_time(func):
+def measute_time_func(func: DijkstraAlgorithmStrategy):
     file_with_testing_data = sorted(
         listdir(path=TESTING_DATA)
     )
@@ -35,7 +36,7 @@ def measute_time(func):
                 start_node = matrix.pop(-1)[0]
 
                 start = time()
-                func(matrix, start_node)
+                func.search_shortest_path(matrix, start_node)
                 end = time() - start
 
                 if size in size_do_have:
