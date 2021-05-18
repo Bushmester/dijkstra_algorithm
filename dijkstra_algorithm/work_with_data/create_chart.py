@@ -16,5 +16,4 @@ def create_chart(csv_file_path: str):
     plt.savefig("mygraph.png")
 
 
-PATH = "/home/bushmester/study/study_programming/cpp/dijkstra-algorithm/work_with_data/load_testing_mesurenets/1621278390.2586138.csv"
-create_chart(PATH)
+create_chart("/home/bushmester/study/study_programming/cpp/dijkstra-algorithm/dijkstra_algorithm/work_with_data/load_testing_mesurenets/1621365321.2155142.csv")

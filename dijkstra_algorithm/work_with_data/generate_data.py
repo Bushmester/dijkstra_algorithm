@@ -1,7 +1,7 @@
 from multiprocessing import Pool
 from random import randint
 
-from .. import config
+from dijkstra_algorithm.config import TESTING_DATA
 
 
 def create_itarable_with_combination(start: int, end: int, step: int, count: int) -> list:
@@ -11,7 +11,7 @@ def create_itarable_with_combination(start: int, end: int, step: int, count: int
 
 
 def create_adjacency_matrix(size: int, number: int):
-    with open(config.TESTING_DATA + f"{size}_{number}.txt", "w") as file:
+    with open(TESTING_DATA + f"{size}_{number}.txt", "w") as file:
         file.write(str(size) + "\n")
         count_of_nodes = size
         random_number = randint(1, 2 ** 5)
@@ -50,3 +50,5 @@ def generate_data(start: int, end: int, step: int, count: int):
                 start, end, step, count
             ))
         )
+
+generate_data(2, 23, 11, 3)
