@@ -56,6 +56,6 @@ def measure_algo(realiz: str):
 
 
 @main.command()
-@click.option("--file", type=click.Path())
+@click.argument("file", type=click.Path())
 def creat_chart(file: click.Path()):
     create_chart_func(file)

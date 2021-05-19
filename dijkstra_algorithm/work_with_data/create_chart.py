@@ -1,6 +1,8 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 
+from dijkstra_algorithm.config import MEASUREMENTS
+
 
 def create_chart_func(csv_file_path: str):
     data = pd.read_csv(csv_file_path)
@@ -13,4 +15,4 @@ def create_chart_func(csv_file_path: str):
     plt.plot(data["median"], color="#8b00ff", label="median")
 
     plt.legend()
-    plt.savefig("mygraph.png")
+    plt.savefig(MEASUREMENTS + "mygraph.png")
