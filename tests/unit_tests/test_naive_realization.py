@@ -1,5 +1,6 @@
-from naive_realization import naive_dijkstra
+from dijkstra_algorithm.naive_realization import naive_dijkstra
 import pytest
+
 
 test_data = [(
                 [[0, 3, 1, 3, 0, 0],
@@ -41,6 +42,24 @@ test_data = [(
                  [0, 0, 11, 0]], 0, [0, 7, 3, 14])]
 
 
+test_false_data = [
+                ([[0, 7, 3, 14],
+                  [10, 0, 4, 0],
+                  [3, 4, 0, 11],
+                  [0, 0, 11, 0]], 0, [1, 2, 8, 14]),
+                ([[0, 2, 4, 5, 10, 8],
+                  [2, 0, 0, 3, 0, 0],
+                  [4, 0, 0, 3, 0, 0],
+                  [8, 3, 3, 0, 5, 3],
+                  [0, 0, 0, 5, 0, 5],
+                  [16, 0, 0, 3, 5, 0]], 2, [2, 3, 0, 3, 5, 6])]
+
+
 @pytest.mark.parametrize("matrix, vertex, expected_result", test_data)
 def test_naive_dijkstra(matrix, vertex, expected_result):
     assert naive_dijkstra(matrix, vertex) == expected_result
+
+
+@pytest.mark.parametrize("matrix, vertex, expected_result", test_data)
+def test_false_naive_dijkstra(matrix, vertex, expected_result):
+    assert naive_dijkstra(matrix, vertex) != expected_result
