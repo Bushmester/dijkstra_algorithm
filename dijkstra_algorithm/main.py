@@ -21,7 +21,7 @@ def main():
 
 
 @main.command()
-@click.option("--realiz", default="naiv")
+@click.option("--realiz", default="naiv", show_default=True)
 @click.argument("vertex", type=int)
 @click.argument("start_node", type=int)
 @click.argument("matrix_el", type=int, nargs=-1)
@@ -37,16 +37,16 @@ def dijkstra_algorithm(realiz: str, matrix_el: Tuple[int], vertex: int, start_no
 
 
 @main.command()
-@click.option("--start", default=1, type=int)
-@click.option("--end", default=2, type=int)
-@click.option("--step", default=1, type=int)
-@click.option("--count", default=10, type=int)
+@click.option("--start", default=0, show_default=True, type=int)
+@click.option("--end", default=1, show_default=True, type=int)
+@click.option("--step", default=1, show_default=True, type=int)
+@click.option("--count", default=1, show_default=True, type=int)
 def generate_data(start: int, end: int, step: int, count: int):
     generate_data_func(start, end, step, count)
 
 
 @main.command()
-@click.option("--realiz", default="naiv")
+@click.option("--realiz", default="naiv", show_default=True)
 def measure_algo(realiz: str):
     func = UseDijkstraAlgorithm(
         cmd_dickt[realiz]()
