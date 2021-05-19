@@ -1,9 +1,8 @@
 import click
 
-from typing import List
+from typing import List, Tuple
 
-from dijkstra_algorithm.dijkstra_strategy import UseDijkstraAlgorithm, NaiveDijkstraAlgorithmStrategy
-# , SetDijkstraAlgorithmStrategy
+from dijkstra_algorithm.dijkstra_strategy import UseDijkstraAlgorithm, NaiveDijkstraAlgorithmStrategy, SetDijkstraAlgorithmStrategy
 from dijkstra_algorithm.functions.make_matrix import make_matrix
 from dijkstra_algorithm.work_with_data.generate_data import generate_data_func
 from dijkstra_algorithm.work_with_data.measure_time import measute_time_func
@@ -12,7 +11,7 @@ from dijkstra_algorithm.work_with_data.create_chart import create_chart_func
 
 cmd_dickt = {
     "naiv": NaiveDijkstraAlgorithmStrategy,
-    # "set": SetDijkstraAlgorithmStrategy
+    "set": SetDijkstraAlgorithmStrategy
 }
 
 
@@ -23,16 +22,18 @@ def main():
 
 @main.command()
 @click.option("--realiz", default="naiv")
-@click.option("--vertex", default=0, type=int)
-@click.option("--matrix", default=["0"], type=str, nargs=-1)
-def dijkstra_algorithm(realiz: str, matrix: str, vertex: int) -> List[int]:
-    matrix = make_matrix(matrix, vertex)
+@click.argument("vertex", type=int)
+@click.argument("start_node", type=int)
+@click.argument("matrix_el", type=int, nargs=-1)
+def dijkstra_algorithm(realiz: str, matrix_el: Tuple[int], vertex: int, start_node: int) -> List[int]:
+
+    matrix = make_matrix(matrix_el, vertex)
 
     answer = UseDijkstraAlgorithm(
         cmd_dickt[realiz]()
-    ).search_shortest_path(matrix, vertex)
+    ).search_shortest_path(matrix, start_node)
 
-    return answer
+    print(answer)
 
 
 @main.command()

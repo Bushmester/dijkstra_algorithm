@@ -53,9 +53,11 @@ class NaiveDijkstraAlgorithmStrategy(DijkstraAlgorithmStrategy):
         return shortest_paths
 
 
-# class SetDijkstraAlgorithmStrategy(DijkstraAlgorithmStrategy):
-#     def search_shortest_path(self, matrix: List[List], vertex: int) -> List[int]:
-#         return set_dijkstra()
+class SetDijkstraAlgorithmStrategy(DijkstraAlgorithmStrategy):
+    def search_shortest_path(self, matrix: List[List], vertex: int) -> List[int]:
+        soon = "soon"
+        return soon
+        # return set_dijkstra()
 
 
 """

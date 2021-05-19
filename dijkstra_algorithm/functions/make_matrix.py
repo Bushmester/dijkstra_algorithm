@@ -1,9 +1,12 @@
-def make_matrix(matrix: str, vertex: int):
+from typing import Tuple
+
+
+def make_matrix(matrix_el: Tuple[int], vertex: int):
     rows = []
     currect_matrix = []
 
-    matrix = list(map(int, matrix.split()))
-    
+    matrix = list(matrix_el)
+
     for i in range(len(matrix)):
         if i == len(matrix) - 1:
             rows.append(matrix[i])
