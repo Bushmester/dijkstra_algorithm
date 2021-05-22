@@ -6,7 +6,7 @@ This algorithm searches for the shortest path from the start node to all vertice
 You need at least `Python 3.8` and `pip` installed to run this CLI tool.
 1. Install it using `pip`
     ```shell
-    pip3 install 
+    pip install dijkstra-algorithm 
     ```
 2. Call `--help` to ensure that it is successfully installed
     ```shell
