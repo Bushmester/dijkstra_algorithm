@@ -1,6 +1,5 @@
 from multiprocessing import Pool
 from random import randint
-import sys
 
 from dijkstra_algorithm.config import TESTING_DATA
 
@@ -14,7 +13,7 @@ def create_itarable_with_combination(start: int, end: int, step: int, count: int
 def create_adjacency_matrix(size: int, number: int):
     with open(TESTING_DATA + f"{size}_{number}.txt", "w") as file:
         file.write(str(size) + "\n")
-        adjacency_matrix = [[randint(0, sys.maxsize) for i in range(size)] for j in range(size)]
+        adjacency_matrix = [[randint(0, 2 ** 5) for i in range(size)] for j in range(size)]
 
         for i in range(size):
             adjacency_matrix[i][i] = 0
