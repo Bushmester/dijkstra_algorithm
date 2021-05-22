@@ -2,6 +2,7 @@ from __future__ import annotations
 from abc import ABC, abstractmethod
 from typing import List
 
+import heapq
 import math
 
 from dijkstra_algorithm.functions.get_min_node import get_min_node
@@ -55,6 +56,27 @@ class NaiveDijkstraAlgorithmStrategy(DijkstraAlgorithmStrategy):
 
 class SetDijkstraAlgorithmStrategy(DijkstraAlgorithmStrategy):
     def search_shortest_path(self, matrix: List[List], vertex: int) -> List[int]:
-        soon = "soon"
-        return soon
-        # return set_dijkstra()
+        ver_count = len(matrix)
+        dist = [math.inf] * ver_count
+        dist[vertex] = 0
+        visited = set()
+        pq = [(0, vertex)]
+
+        while len(pq) != 0:
+            current_len, ver = heapq.heappop(pq)
+
+            if current_len > dist[ver] or ver in visited:
+                continue
+
+            for i in range(ver_count):
+                to_ver = i
+                current_len = matrix[ver][to_ver]
+
+                if dist[to_ver] > current_len + dist[ver] and current_len > 0:
+                    dist[to_ver] = current_len + dist[ver]
+                    heapq.heappush(pq, (dist[to_ver], to_ver))
+
+            visited.add(ver)
+
+        return dist
+
