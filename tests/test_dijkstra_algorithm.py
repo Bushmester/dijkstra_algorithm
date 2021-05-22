@@ -5,12 +5,12 @@ from dijkstra_algorithm.dijkstra_strategy import NaiveDijkstraAlgorithmStrategy,
 
 class TestDijkstraStrategy:
     test_data_for_naive = [(
-            [[0, 3, 1, 3, 0, 0],
-             [3, 0, 4, 0, 0, 0],
-             [1, 4, 0, 0, 7, 5],
-             [3, 0, 0, 0, 0, 2],
-             [0, 0, 7, 0, 0, 4],
-             [0, 0, 5, 2, 4, 0]], 3, [3, 6, 4, 0, 6, 2]),
+        [[0, 3, 1, 3, 0, 0],
+         [3, 0, 4, 0, 0, 0],
+         [1, 4, 0, 0, 7, 5],
+         [3, 0, 0, 0, 0, 2],
+         [0, 0, 7, 0, 0, 4],
+         [0, 0, 5, 2, 4, 0]], 3, [3, 6, 4, 0, 6, 2]),
         (
             [[0, 3, 1, 3, 0, 0],
              [3, 0, 4, 0, 0, 0],
@@ -58,12 +58,12 @@ class TestDijkstraStrategy:
              [16, 0, 0, 3, 5, 0]], 2, [2, 3, 0, 3, 5, 6])]
 
     test_data_for_set = [(
-            [[0, 4, 2, 3, 0, 0],
-             [1, 0, 4, 0, 0, 0],
-             [1, 7, 0, 0, 8, 1],
-             [7, 0, 0, 0, 0, 1],
-             [0, 0, 2, 0, 0, 5],
-             [0, 0, 3, 2, 2, 0]], 2, [1, 5, 0, 3, 3, 1]),
+        [[0, 4, 2, 3, 0, 0],
+         [1, 0, 4, 0, 0, 0],
+         [1, 7, 0, 0, 8, 1],
+         [7, 0, 0, 0, 0, 1],
+         [0, 0, 2, 0, 0, 5],
+         [0, 0, 3, 2, 2, 0]], 2, [1, 5, 0, 3, 3, 1]),
         (
             [[0, 6, 2, 8, 0, 0],
              [1, 0, 8, 0, 7, 0],
@@ -113,22 +113,26 @@ class TestDijkstraStrategy:
     @pytest.mark.parametrize("matrix, vertex, expected_result", test_data_for_naive)
     def test_naive_dijkstra_algorithm_strategy(self, matrix, vertex, expected_result):
         naive_dijkstra = NaiveDijkstraAlgorithmStrategy()
-        assert naive_dijkstra.search_shortest_path(matrix, vertex) == expected_result
+        assert naive_dijkstra.search_shortest_path(
+            matrix, vertex) == expected_result
 
     @pytest.mark.parametrize("matrix, vertex, expected_result", test_false_data_for_naive)
     def test_false_naive_dijkstra_algorithm_strategy(self, matrix, vertex, expected_result):
         naive_dijkstra = NaiveDijkstraAlgorithmStrategy()
-        assert naive_dijkstra.search_shortest_path(matrix, vertex) != expected_result
+        assert naive_dijkstra.search_shortest_path(
+            matrix, vertex) != expected_result
 
     @pytest.mark.parametrize("matrix, vertex, expected_result", test_data_for_set)
     def test_set_dijkstra_algorithm_strategy(self, matrix, vertex, expected_result):
         set_dijkstra = SetDijkstraAlgorithmStrategy()
-        assert set_dijkstra.search_shortest_path(matrix, vertex) == expected_result
+        assert set_dijkstra.search_shortest_path(
+            matrix, vertex) == expected_result
 
     @pytest.mark.parametrize("matrix, vertex, expected_result", test_false_data_for_set)
     def test_false_set_dijkstra_algorithm_strategy(self, matrix, vertex, expected_result):
         set_dijkstra = SetDijkstraAlgorithmStrategy()
-        assert set_dijkstra.search_shortest_path(matrix, vertex) != expected_result
+        assert set_dijkstra.search_shortest_path(
+            matrix, vertex) != expected_result
 
 
 def test_version():
