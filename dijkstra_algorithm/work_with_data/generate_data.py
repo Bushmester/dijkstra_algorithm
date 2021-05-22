@@ -13,24 +13,17 @@ def create_itarable_with_combination(start: int, end: int, step: int, count: int
 def create_adjacency_matrix(size: int, number: int):
     with open(TESTING_DATA + f"{size}_{number}.txt", "w") as file:
         file.write(str(size) + "\n")
-        count_of_nodes = size
-        random_number = randint(1, 2 ** 5)
-        adjacency_matrix = [
-            [0 for _ in range(count_of_nodes)] for _ in range(count_of_nodes)
-        ]
+        adjacency_matrix = [[randint(0, 2 ** 5) for i in range(size)] for j in range(size)]
 
-        for _ in range(random_number):
-            random_first_index = randint(1, count_of_nodes)
-            random_second_index = randint(1, count_of_nodes)
-            weight = randint(1, random_number)
-            adjacency_matrix[
-                random_first_index - 1
-            ][
-                random_second_index - 1
-            ] = weight
+        for i in range(size):
+            adjacency_matrix[i][i] = 0
 
-        for index in range(count_of_nodes):
-            adjacency_matrix[index][index] = 0
+        for i in range(size):
+            for j in range(size):
+                will_be_num = randint(0, 10)
+                if not will_be_num:
+                    adjacency_matrix[i][j] = 0
+                adjacency_matrix[j][i] = adjacency_matrix[i][j]
 
         for elements in range(size):
             for element in range(len(adjacency_matrix[elements])):
@@ -42,7 +35,7 @@ def create_adjacency_matrix(size: int, number: int):
         file.write(str(randint(0, size - 1)))
 
 
-def generate_data(start: int, end: int, step: int, count: int):
+def generate_data_func(start: int, end: int, step: int, count: int):
     with Pool() as pool:
         pool.starmap(
             create_adjacency_matrix,
@@ -50,5 +43,3 @@ def generate_data(start: int, end: int, step: int, count: int):
                 start, end, step, count
             ))
         )
-
-generate_data(2, 23, 11, 3)

@@ -1,8 +1,10 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 
+from dijkstra_algorithm.config import MEASUREMENTS
 
-def create_chart(csv_file_path: str):
+
+def create_chart_func(csv_file_path: str):
     data = pd.read_csv(csv_file_path)
     data.set_index("size", inplace=True)
     data = data.sort_values("size")
@@ -13,7 +15,4 @@ def create_chart(csv_file_path: str):
     plt.plot(data["median"], color="#8b00ff", label="median")
 
     plt.legend()
-    plt.savefig("mygraph.png")
-
-
-create_chart("/home/bushmester/study/study_programming/cpp/dijkstra-algorithm/dijkstra_algorithm/work_with_data/load_testing_mesurenets/1621365321.2155142.csv")
+    plt.savefig(MEASUREMENTS + "mygraph.png")
